@@ -2,7 +2,7 @@
 //  EnterViewController.swift
 //  Swift5Portfolio
 //
-//  Created by 野入隆史 on 2020/10/18.
+//  Created by 野入隆史 on 2020/12/30.
 //  Copyright © 2020 野入隆史. All rights reserved.
 //
 
