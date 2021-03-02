@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+struct UserInfo {
+    var email:String
+    var userName:String
+}
+
+struct UserInfo2 {
+    var email:String
+    var profileImage:String
+}
+
+

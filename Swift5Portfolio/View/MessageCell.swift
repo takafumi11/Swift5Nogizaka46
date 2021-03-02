@@ -9,16 +9,31 @@
 import UIKit
 
 class MessageCell: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var sender: UILabel!    
+    @IBOutlet weak var backGroungView: UIView!
+    @IBOutlet weak var messageTextLabel: UILabel!
+    @IBOutlet weak var myMessageTextLabel: UILabel!
+    @IBOutlet weak var opponentTimeLabel: UILabel!
+    @IBOutlet weak var myTimeLabel: UILabel!
+    
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        contentView.backgroundColor = .groupTableViewBackground
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
     
 }

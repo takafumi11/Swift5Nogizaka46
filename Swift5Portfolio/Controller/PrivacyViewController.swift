@@ -7,24 +7,71 @@
 //
 
 import UIKit
+import WebKit
 
-class PrivacyViewController: UIViewController {
-
+class PrivacyViewController: UIViewController,WKNavigationDelegate {
+    
+    var webView = WKWebView()
+    
+    @IBOutlet weak var bgView: UIView!
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var agreeBtn: UIButton!
+    @IBOutlet weak var agreeLabel: UILabel!
+    @IBOutlet weak var checkBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        indicator.startAnimating()
+        indicator.color = .purple
+        
+        webView.frame = CGRect(x:0,y:0,width:UIScreen.main.bounds.width,height:UIScreen.main.bounds.height - agreeLabel.frame.size.height - agreeBtn.frame.size.height * 2)
+        
+        view.addSubview(webView)
+        
+                
+        webView.navigationDelegate = self
+        
+        let url = URL(string: "https://noifumi.com/NogizakaApp/terms.html")
+        
+        let request = URLRequest(url: url!)
+        
+        webView.load(request)
+        self.indicator.stopAnimating()
+        self.indicator.color = .clear
+        
+        
+        CheckBtnDidTap()
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func CheckBtnDidTap(){
+        if (self.checkBtn.isSelected){
+            self.agreeBtn.layer.backgroundColor = UIColor(red: 163/255, green: 32/255, blue: 255/255, alpha: 1).cgColor
+        }else{
+            self.agreeBtn.layer.backgroundColor = UIColor.gray.cgColor
+        }
+        self.checkBtn.setImage(UIImage(named: "noCheck"), for: .normal)
+        self.checkBtn.setImage(UIImage(named: "check"), for: .selected)
+                            
     }
-    */
+    @IBAction func check(_ sender: Any) {
+        self.checkBtn.isSelected = !self.checkBtn.isSelected
+        CheckBtnDidTap()
+    }
+            
+    @IBAction func agree(_ sender: Any) {
+        
+        if(self.checkBtn.isSelected){
+            let enterVC = storyboard?.instantiateViewController(identifier: "enter") as! EnterViewController
+            self.navigationController?.pushViewController(enterVC, animated: true)
+        }else{
+            print("同意してください")
+        }
+        
+    }
+    
 
 }

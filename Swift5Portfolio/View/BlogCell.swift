@@ -10,9 +10,21 @@ import UIKit
 
 class BlogCell: UITableViewCell {
 
+    @IBOutlet weak var face: UIImageView!
+    @IBOutlet weak var blogTitle: UILabel!
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var likeCount: UILabel!
+    @IBOutlet weak var upDate: UILabel!
+    @IBOutlet weak var author: UILabel!
+    @IBOutlet weak var blogImageView: UIImageView!
+    
+    @IBOutlet weak var bgView: UIView!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

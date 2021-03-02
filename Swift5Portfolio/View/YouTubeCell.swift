@@ -10,9 +10,21 @@ import UIKit
 
 class YouTubeCell: UITableViewCell {
 
+    
+    @IBOutlet weak var thumbnailView: UIImageView!
+    @IBOutlet weak var postDateLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var bgView: UIView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        contentView.backgroundColor = .groupTableViewBackground
+        bgView.layer.cornerRadius = 20.0
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

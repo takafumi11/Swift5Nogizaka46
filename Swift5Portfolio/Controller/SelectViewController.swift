@@ -7,24 +7,36 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SelectViewController: UIViewController {
 
+    @IBOutlet weak var backView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        backView.layer.cornerRadius = 20.0
+        view.backgroundColor = .systemGroupedBackground
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func anonymousLoginBtn(_ sender: Any) {
+        Auth.auth().signInAnonymously { (result, error) in
+            if error != nil{
+                print(error.debugDescription)
+                print("ログインに失敗しました")
+            }else{
+                print("ログインに成功しました!!")
+            }
+            
+            UserDefaults.standard.removeObject(forKey: "userName")
+            UserDefaults.standard.removeObject(forKey: "userImage")
+            UserDefaults.standard.removeObject(forKey: "email")
+            
+            let home = self.storyboard?.instantiateViewController(identifier: "home") as! TabBarController
+            self.navigationController?.pushViewController(home, animated: true)        
+        }
     }
-    */
-
 }

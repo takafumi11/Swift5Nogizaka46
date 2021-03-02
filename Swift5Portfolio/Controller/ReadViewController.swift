@@ -7,24 +7,61 @@
 //
 
 import UIKit
+import Firebase
 
-class ReadViewController: UIViewController {
+class ReadViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+        
+    @IBOutlet weak var tableView: UITableView!
 
+    var blogbody:String = ""
+    var blogtitle:String = ""    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+             
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        if UserDefaults.standard.object(forKey: "title") != nil{
+            blogtitle = UserDefaults.standard.object(forKey: "title") as! String
+        }
+        
+        if UserDefaults.standard.object(forKey: "body") != nil{
+            blogbody = UserDefaults.standard.object(forKey: "body") as! String
+        }
+               
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //navigationBarが邪魔なので非表示
+        navigationController?.isNavigationBarHidden = false
     }
-    */
+
+    func trimming(string:String){
+         string.trimmingCharacters(in: .whitespaces)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell",for: indexPath)
+    
+        cell.textLabel?.text = blogbody
+        
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.textColor = .gray
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 18)
+        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                                
+        return cell
+    }
 
 }

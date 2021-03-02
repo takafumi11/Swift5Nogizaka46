@@ -12,5 +12,5 @@ struct YouTubeModel{
     var URL = String()
     var publishedAt = String()
     var title = String()
-    var thumbnail = String()
+    var thumbnail = String()    
 }
