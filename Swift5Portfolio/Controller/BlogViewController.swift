@@ -256,7 +256,6 @@ class BlogViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                                    
                         //imagタグなのに公式のバグで写真が入っていない場合がある
                         if pics != nil && ssl == "https"{
-//                                print(pics!)
 
                             if aaa == ""{
                                 aaa = newString
